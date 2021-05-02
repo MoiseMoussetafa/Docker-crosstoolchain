@@ -7,7 +7,7 @@ Placer le dockerfile dans le dossier souhaité puis :
 sudo docker build -t <XXX> . 
 ```
 
-Remplacez <XXX> par le nom désiré pour l'image.
+Remplacez `<XXX>` par le nom désiré pour l'image.
 
 # Source 
 https://github.com/yassine-elmernissi/bachelor-embedded-linux/tree/main/labs/lab1
