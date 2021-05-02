@@ -91,11 +91,7 @@ RUN ./configure --enable-local
 RUN make
 RUN sudo make install
 ENV PATH=/home/user/.local/bin:$PATH
-COPY ${CONFIG_FILE} config
+COPY ${CONFIG_FILE} .config
 # Build ct-ng
 RUN ./ct-ng arm-unknown-linux-gnueabi
 RUN ./ct-ng build
-
-
-### Command for build :
-### sudo docker build -t <nomdufichier> .
