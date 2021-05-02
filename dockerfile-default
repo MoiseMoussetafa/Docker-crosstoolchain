@@ -64,7 +64,8 @@ RUN apt-get install -y \
 
 # Install Dumb-init
 # https://github.com/Yelp/dumb-init
-RUN apt-get install dumb-init
+RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_x86_64
+RUN chmod +x /usr/local/bin/dumb-init
 RUN echo 'export PATH=/opt/ctng/bin:$PATH' >> /etc/profile
 ENTRYPOINT [ "/usr/local/bin/dumb-init", "--" ]
 
