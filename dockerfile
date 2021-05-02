@@ -3,7 +3,7 @@
 # Based on Ubuntu "" x.y => Your version of Ubuntu or else!
 FROM ubuntu:latest as ynov-ctng-ubuntu
 
-# LABEL about the custom image
+# LABEL about the custom image 
 # Your Ynov Bordeaux Campus student email address
 LABEL maintainer="moise.moussetafa@ynov.com"
 # First version, nothing to change!
@@ -19,7 +19,7 @@ LABEL description="docker image (container) with cross toolchain (crosstool-ng)"
 ARG CTNG_UID=1000
 ARG CTNG_GID=1000
 # File to configure for your raspberry pi version
-ARG CONFIG_FILE
+ARG CONFIG_FILE=./arm-ynov-linux-gnuabihf
 
 
 RUN apt-get -y update && apt-get -y upgrade 
@@ -93,5 +93,10 @@ RUN sudo make install
 ENV PATH=/home/user/.local/bin:$PATH
 COPY ${CONFIG_FILE} .config
 # Build ct-ng
-RUN ./ct-ng arm-unknown-linux-gnueabi
+RUN ./ct-ng oldconfig
 RUN ./ct-ng build
+
+ENV TOOLCHAIN_PATH=/home/dev/x-tools/${CONFIG_FILE}
+ENV PATH=${TOOLCHAIN_PATH}/bin:$PATH
+
+CMD ["bash"]
